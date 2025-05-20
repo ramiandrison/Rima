@@ -4,10 +4,12 @@ import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { IconSymbol } from '@/components/ui/IconSymbol';
+import { useSession } from '@/context/AuthContext';
 import { useRouter } from 'expo-router';
 
-export default function TabTwoScreen() {
+export default function IndexScreen() {
     const router = useRouter();
+    const { signOut } = useSession();
     return (
         <ParallaxScrollView
             headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
@@ -23,7 +25,10 @@ export default function TabTwoScreen() {
                 <ThemedText type="title">Patient</ThemedText>
             </ThemedView>
             <ThemedText>This app includes example code to help you get started.</ThemedText>
+
             <Button title="Go to login" onPress={() => router.navigate('/sign-in')} />
+            <Button title="Logout" onPress={() => signOut()} />
+
         </ParallaxScrollView>
     );
 }
